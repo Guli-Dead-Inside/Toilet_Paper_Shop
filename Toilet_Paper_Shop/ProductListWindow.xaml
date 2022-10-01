@@ -10,28 +10,37 @@
         <StackPanel Margin="5,5" Width="150" HorizontalAlignment="Left" >
             <TextBox TextWrapping="Wrap" Text="Введите для поиска"/>
         </StackPanel>
-        
-        <ListView Margin="5,27,104,46">
+
+        <ListView x:Name="PaperLst" Margin="5,27,104,46">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
                         <StackPanel>
-                            <Image/>
+                            <Image Source="{Binding Picture}"/>
                         </StackPanel>
                         <StackPanel>
-                            <TextBlock/>
-                            <TextBlock/>
+                            <TextBlock Text="{Binding TypeProd.NameType}"/>
+                            <TextBlock Text="{Binding Name}"/>
+                        </StackPanel>
+
+                        <StackPanel>
+                            <TextBlock Text="{Binding Id_Prod}"/>
+                            <Label Content="Материалы:"/>
+                            <TextBlock Text="{Binding Material.Name}"/>
                         </StackPanel>
                         <StackPanel>
-                            <TextBlock/>
-                            <TextBlock/>
-                        </StackPanel>
-                        <StackPanel>
-                            <TextBlock/>
+                            <TextBlock Text="{Binding Material.Cost}"/>
                         </StackPanel>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        <WrapPanel HorizontalAlignment="Center" Margin="316,388,316,0">
+            <Button x:Name="BLeft" Click="BLeft_Click" Content="Left" Width="50" Margin="5"/>
+            <ScrollViewer MaxWidth="300" Margin="5" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+                <WrapPanel x:Name="WPButtons"/>
+            </ScrollViewer>
+            <Button x:Name="BRight" Click="BRight_Click" Content="Right" Margin="5" Width="50"/>
+        </WrapPanel>
     </Grid>
 </Window>

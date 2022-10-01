@@ -35,8 +35,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -55,16 +64,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Page Include="ProductListWindow.xaml">
@@ -73,6 +74,39 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\Material.cs">
+      <DependentUpon>ToiletPaper_db.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\MaterialProd.cs">
+      <DependentUpon>ToiletPaper_db.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\MaterialsAndProducts.cs">
+      <DependentUpon>ToiletPaper_db.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Product.cs">
+      <DependentUpon>ToiletPaper_db.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\sysdiagrams.cs">
+      <DependentUpon>ToiletPaper_db.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\ToiletPaper_db.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ToiletPaper_db.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\ToiletPaper_db.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ToiletPaper_db.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\ToiletPaper_db.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ToiletPaper_db.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Model\TypeProd.cs">
+      <DependentUpon>ToiletPaper_db.tt</DependentUpon>
+    </Compile>
     <Compile Include="ProductListWindow.xaml.cs">
       <DependentUpon>ProductListWindow.xaml</DependentUpon>
     </Compile>
@@ -93,6 +127,14 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EntityDeploy Include="Model\ToiletPaper_db.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ToiletPaper_db.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Model\ToiletPaper_db.edmx.diagram">
+      <DependentUpon>ToiletPaper_db.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -100,6 +142,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Model\ToiletPaper_db.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ToiletPaper_db.Context.cs</LastGenOutput>
+      <DependentUpon>ToiletPaper_db.edmx</DependentUpon>
+    </Content>
+    <Content Include="Model\ToiletPaper_db.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ToiletPaper_db.edmx</DependentUpon>
+      <LastGenOutput>ToiletPaper_db.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
