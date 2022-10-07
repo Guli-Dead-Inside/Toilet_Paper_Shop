@@ -5,18 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Toilet_Paper_Shop"
         mc:Ignorable="d"
-        Title="ProductListWindow" Height="450" Width="800">
+        Title="ProductListWindow" Height="494.262" Width="882.377">
     <Grid>
         <StackPanel Margin="5,5" Width="150" HorizontalAlignment="Left" >
             <TextBox TextWrapping="Wrap" Text="Введите для поиска"/>
         </StackPanel>
 
-        <ListView x:Name="PaperLst" Margin="5,27,104,46">
+        <ListView x:Name="PaperLst" Margin="5,27,130,90">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
                         <StackPanel>
-                            <Image Source="{Binding Picture}"/>
+                            <Image x:Name="PictureI" Source="{Binding Picture}"/>
                         </StackPanel>
                         <StackPanel>
                             <TextBlock Text="{Binding TypeProd.NameType}"/>
@@ -29,18 +29,22 @@
                             <TextBlock Text="{Binding Material.Name}"/>
                         </StackPanel>
                         <StackPanel>
-                            <TextBlock Text="{Binding Material.Cost}"/>
+                            <TextBlock Text="{Binding MinCostForAgent}"/>
                         </StackPanel>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <WrapPanel HorizontalAlignment="Center" Margin="316,388,316,0">
-            <Button x:Name="BLeft" Click="BLeft_Click" Content="Left" Width="50" Margin="5"/>
-            <ScrollViewer MaxWidth="300" Margin="5" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Hidden">
-                <WrapPanel x:Name="WPButtons"/>
+        <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Bottom">
+            <Button x:Name="BLeft" Click="BLeft_Click" Content="Left" Width="50" Height="25" Margin="5"/>
+            <ScrollViewer Height="75" MaxWidth="300" Margin="5" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+                <WrapPanel  x:Name="WPButtons"/>
             </ScrollViewer>
-            <Button x:Name="BRight" Click="BRight_Click" Content="Right" Margin="5" Width="50"/>
+            <Button x:Name="BRight" Click="BRight_Click" Content="Right" Margin="5" Height="25" Width="50"/>
         </WrapPanel>
+        
+        
+        <ComboBox x:Name="CBNumberWrite" SelectedIndex="0" SelectionChanged="CBNumberWrite_SelectionChanged" HorizontalAlignment="Left" Margin="754,0,0,0" VerticalAlignment="Top" Width="120" Visibility="Hidden"/>
+        <Button x:Name="PictureBtn" Content="Button" HorizontalAlignment="Left" Margin="779,270,0,0" VerticalAlignment="Top" Width="75" Click="PictureBtn_Click"/>
     </Grid>
 </Window>

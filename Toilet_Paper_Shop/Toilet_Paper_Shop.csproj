@@ -154,9 +154,11 @@
       <DependentUpon>ToiletPaper_db.edmx</DependentUpon>
       <LastGenOutput>ToiletPaper_db.cs</LastGenOutput>
     </Content>
+    <Resource Include="Pictures\picture.png" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

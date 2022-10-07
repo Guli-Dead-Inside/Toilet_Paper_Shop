@@ -9,7 +9,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id" Type="int" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="50" />
           <Property Name="id_Type" Type="int" Nullable="false" />
           <Property Name="CountPackaged" Type="int" />
@@ -43,8 +43,8 @@
           <Property Name="MinCostForAgent" Type="int" />
           <Property Name="Picture" Type="image" />
           <Property Name="Id_Type" Type="int" Nullable="false" />
-          <Property Name="Id_Material" Type="int" />
           <Property Name="Count" Type="int" />
+          <Property Name="Id_Material" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -107,7 +107,7 @@
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="Product">
-              <PropertyRef Name="Id_Material" />
+              <PropertyRef Name="Count" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -187,7 +187,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="id_Type" Type="Int32" Nullable="false" />
           <Property Name="CountPackaged" Type="Int32" />
@@ -227,8 +227,8 @@
           <Property Name="MinCostForAgent" Type="Int32" />
           <Property Name="Picture" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="Id_Type" Type="Int32" Nullable="false" />
-          <Property Name="Id_Material" Type="Int32" />
           <Property Name="Count" Type="Int32" />
+          <Property Name="Id_Material" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Material" Relationship="ToiletPaper_dbModel.FK_Product_Material" FromRole="Product" ToRole="Material" />
           <NavigationProperty Name="MaterialsAndProducts" Relationship="ToiletPaper_dbModel.FK_MaterialsAndProducts_Product" FromRole="Product" ToRole="MaterialsAndProducts" />
           <NavigationProperty Name="TypeProd" Relationship="ToiletPaper_dbModel.FK_Product_TypeProd" FromRole="Product" ToRole="TypeProd" />
@@ -283,7 +283,7 @@
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="Product">
-              <PropertyRef Name="Id_Material" />
+              <PropertyRef Name="Count" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -351,8 +351,8 @@
           <EntitySetMapping Name="Product">
             <EntityTypeMapping TypeName="ToiletPaper_dbModel.Product">
               <MappingFragment StoreEntitySet="Product">
-                <ScalarProperty Name="Count" ColumnName="Count" />
                 <ScalarProperty Name="Id_Material" ColumnName="Id_Material" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
                 <ScalarProperty Name="Id_Type" ColumnName="Id_Type" />
                 <ScalarProperty Name="Picture" ColumnName="Picture" />
                 <ScalarProperty Name="MinCostForAgent" ColumnName="MinCostForAgent" />

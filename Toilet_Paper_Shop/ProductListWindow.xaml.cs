@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,10 +22,14 @@ namespace Toilet_Paper_Shop
     public partial class ProductListWindow : Window
     {
         public static Model.ToiletPaper_dbEntities db = new Model.ToiletPaper_dbEntities();
+        Model.Product prod1;
         public ProductListWindow()
         {
             InitializeComponent();
+            prod1 = new Model.Product();
             PaperLst.ItemsSource = db.Product.ToList();
+            RefreshComboBox();
+            RefreshButtons();
         }
         private void BLeft_Click(object sender, RoutedEventArgs e)
         {
@@ -52,7 +58,7 @@ namespace Toilet_Paper_Shop
 
         private void CBNumberWrite_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            pageSize = Convert.ToInt32(PaperLst.SelectedItem.ToString());
+            pageSize = Convert.ToInt32(CBNumberWrite.SelectedItem.ToString());
             RefreshPagination();
             RefreshButtons();
         }
@@ -66,9 +72,7 @@ namespace Toilet_Paper_Shop
         }
         private void RefreshComboBox()
         {
-            PaperLst.Items.Add("10");
-            PaperLst.Items.Add("25");
-            PaperLst.Items.Add("50");
+            CBNumberWrite.Items.Add("20");
         }
         private void RefreshButtons()
         {
@@ -89,7 +93,7 @@ namespace Toilet_Paper_Shop
             }
             else
             {
-                for (int i = 0; i < prod.Count / pageSize + 1; i++)
+                for (int i = 0; i < prod.Count / pageSize; i++)
                 {
                     Button button = new Button();
                     button.Content = i + 1;
@@ -108,6 +112,31 @@ namespace Toilet_Paper_Shop
             Button button = (Button)sender;
             pageNumber = Convert.ToInt32(button.Content) - 1;
             RefreshPagination();
+        }
+
+        private void PictureBtn_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            
+                if (openFileDialog.ShowDialog().GetValueOrDefault())
+                {
+                    
+                    prod1.Picture = File.ReadAllBytes(openFileDialog.FileName);
+                    db.SaveChanges();
+                }
+            
+        }
+        private void RefreshPictureList()
+        {
+            if (prod1.Picture == null)
+            {
+                BitmapImage image = new BitmapImage();
+                image.BeginInit();
+                image.UriSource = new Uri("picture.png");
+                image.EndInit();
+                
+                
+            }
         }
     }
 }

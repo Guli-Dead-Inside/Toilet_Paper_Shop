@@ -25,8 +25,8 @@ namespace Toilet_Paper_Shop.Model
         public Nullable<int> MinCostForAgent { get; set; }
         public byte[] Picture { get; set; }
         public int Id_Type { get; set; }
-        public Nullable<int> Id_Material { get; set; }
         public Nullable<int> Count { get; set; }
+        public int Id_Material { get; set; }
     
         public virtual Material Material { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
