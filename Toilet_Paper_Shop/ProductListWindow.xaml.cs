@@ -30,6 +30,9 @@ namespace Toilet_Paper_Shop
             PaperLst.ItemsSource = db.Product.ToList();
             RefreshComboBox();
             RefreshButtons();
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(PaperLst.ItemsSource);
+            view.Filter = UserFilter;
+
         }
         private void BLeft_Click(object sender, RoutedEventArgs e)
         {
@@ -114,29 +117,18 @@ namespace Toilet_Paper_Shop
             RefreshPagination();
         }
 
-        private void PictureBtn_Click(object sender, RoutedEventArgs e)
+     
+     
+     private bool UserFilter(object item)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            
-                if (openFileDialog.ShowDialog().GetValueOrDefault())
-                {
-                    
-                    prod1.Picture = File.ReadAllBytes(openFileDialog.FileName);
-                    db.SaveChanges();
-                }
-            
+            if (String.IsNullOrEmpty(SearchTB.Text))
+                return true;
+            else
+                return ((item as Model.Product).Name.IndexOf(SearchTB.Text, StringComparison.OrdinalIgnoreCase) >= 0);
         }
-        private void RefreshPictureList()
+        private void txtName_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (prod1.Picture == null)
-            {
-                BitmapImage image = new BitmapImage();
-                image.BeginInit();
-                image.UriSource = new Uri("picture.png");
-                image.EndInit();
-                
-                
-            }
+            CollectionViewSource.GetDefaultView(PaperLst.ItemsSource).Refresh();
         }
     }
 }

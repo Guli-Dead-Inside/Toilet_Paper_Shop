@@ -7,8 +7,8 @@
         mc:Ignorable="d"
         Title="ProductListWindow" Height="494.262" Width="882.377">
     <Grid>
-        <StackPanel Margin="5,5" Width="150" HorizontalAlignment="Left" >
-            <TextBox TextWrapping="Wrap" Text="Введите для поиска"/>
+        <StackPanel Margin="5,5"  Width="150" HorizontalAlignment="Left" >
+            <TextBox x:Name="SearchTB" TextWrapping="Wrap" TextChanged="txtName_TextChanged" />
         </StackPanel>
 
         <ListView x:Name="PaperLst" Margin="5,27,130,90">
@@ -45,6 +45,5 @@
         
         
         <ComboBox x:Name="CBNumberWrite" SelectedIndex="0" SelectionChanged="CBNumberWrite_SelectionChanged" HorizontalAlignment="Left" Margin="754,0,0,0" VerticalAlignment="Top" Width="120" Visibility="Hidden"/>
-        <Button x:Name="PictureBtn" Content="Button" HorizontalAlignment="Left" Margin="779,270,0,0" VerticalAlignment="Top" Width="75" Click="PictureBtn_Click"/>
     </Grid>
 </Window>
