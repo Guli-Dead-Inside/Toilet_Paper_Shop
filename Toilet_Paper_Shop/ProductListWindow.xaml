@@ -45,5 +45,12 @@
         
         
         <ComboBox x:Name="CBNumberWrite" SelectedIndex="0" SelectionChanged="CBNumberWrite_SelectionChanged" HorizontalAlignment="Left" Margin="754,0,0,0" VerticalAlignment="Top" Width="120" Visibility="Hidden"/>
+        <ComboBox x:Name="FilterCB" SelectionChanged="FilterCB_SelectionChanged" HorizontalAlignment="Left" Margin="747,5,0,0" VerticalAlignment="Top" Width="120">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Background="White" x:Name="TypeProd_Name" Text="{Binding NameType}"/>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
     </Grid>
 </Window>

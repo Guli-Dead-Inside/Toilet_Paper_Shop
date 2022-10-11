@@ -13,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Toilet_Paper_Shop.Model;
 
 namespace Toilet_Paper_Shop
 {
@@ -21,8 +22,9 @@ namespace Toilet_Paper_Shop
     /// </summary>
     public partial class ProductListWindow : Window
     {
-        public static Model.ToiletPaper_dbEntities1 db = new Model.ToiletPaper_dbEntities1();
+        public static Model.ToiletPaper_dbEntities2 db = new Model.ToiletPaper_dbEntities2();
         Model.Product prod1;
+       
         public ProductListWindow()
         {
             InitializeComponent();
@@ -30,9 +32,14 @@ namespace Toilet_Paper_Shop
             PaperLst.ItemsSource = db.Product.ToList();
             RefreshComboBox();
             RefreshButtons();
+            foreach (var serv in ProductListWindow.db.TypeProd)
+            {
+                FilterCB.ItemsSource = db.TypeProd.ToList();
+
+            }
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(PaperLst.ItemsSource);
             view.Filter = UserFilter;
-
+           
         }
         private void BLeft_Click(object sender, RoutedEventArgs e)
         {
@@ -77,6 +84,7 @@ namespace Toilet_Paper_Shop
         {
             CBNumberWrite.Items.Add("20");
         }
+
         private void RefreshButtons()
         {
             WPButtons.Children.Clear();
@@ -130,5 +138,14 @@ namespace Toilet_Paper_Shop
         {
             CollectionViewSource.GetDefaultView(PaperLst.ItemsSource).Refresh();
         }
+
+        private void FilterCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var typeName = ((TypeProd)FilterCB.SelectedItem).NameType;
+            var type = ProductListWindow.db.TypeProd.Where(x => x.NameType == typeName).FirstOrDefault();
+            
+
+        }
+     
     }
 }
