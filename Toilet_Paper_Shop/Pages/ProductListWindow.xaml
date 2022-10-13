@@ -11,10 +11,10 @@
             <TextBox x:Name="SearchTB" TextWrapping="Wrap" TextChanged="txtName_TextChanged" />
         </StackPanel>
 
-        <ListView x:Name="PaperLst" Margin="5,27,130,90">
+        <ListView x:Name="PaperLst" Margin="5,27,130,90" Control.MouseDoubleClick="PaperLst_MouseDoubleClick">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal"  >
                         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left" Height="100" Width="100">
                             <Image  Height="50" Width="100" Margin="10" x:Name="PictureI" Source="{Binding Picture}"/>
                         </StackPanel>

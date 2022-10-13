@@ -22,13 +22,13 @@ namespace Toilet_Paper_Shop.Pages
     /// </summary>
     public partial class ProductListWindow : Window
     {
-        public static Model.ToiletPaper_dbEntities db = new Model.ToiletPaper_dbEntities();
-        Model.Product prod1;
+        public static ToiletPaper_dbEntities db = new Model.ToiletPaper_dbEntities();
+        Product prod1;
        
         public ProductListWindow()
         {
             InitializeComponent();
-            prod1 = new Model.Product();
+            prod1 = new Product();
             PaperLst.ItemsSource = db.Product.ToList();
             RefreshComboBox();
             RefreshButtons();
@@ -74,7 +74,7 @@ namespace Toilet_Paper_Shop.Pages
         }
         int pageSize;
         int pageNumber;
-        List<Model.Product> prod = db.Product.ToList();
+        List<Product> prod = db.Product.ToList();
         private void RefreshPagination()
         {
             PaperLst.ItemsSource = null;
@@ -132,7 +132,7 @@ namespace Toilet_Paper_Shop.Pages
             if (String.IsNullOrEmpty(SearchTB.Text))
                 return true;
             else
-                return ((item as Model.Product).Name.IndexOf(SearchTB.Text, StringComparison.OrdinalIgnoreCase) >= 0);
+                return ((item as Product).Name.IndexOf(SearchTB.Text, StringComparison.OrdinalIgnoreCase) >= 0);
         }
         private void txtName_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -146,6 +146,12 @@ namespace Toilet_Paper_Shop.Pages
             
 
         }
-     
+
+        private void PaperLst_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            InsertListWindow insertwin = new InsertListWindow();
+            this.Close();
+            insertwin.Show();
+        }
     }
 }

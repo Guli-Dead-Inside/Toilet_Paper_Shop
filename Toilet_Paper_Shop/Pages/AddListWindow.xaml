@@ -7,6 +7,81 @@
         mc:Ignorable="d"
         Title="AddListWindow" Height="450" Width="800">
     <Grid>
-        
+        <TextBlock HorizontalAlignment="Left" Margin="302,10,0,0" TextWrapping="Wrap" FontSize="20" VerticalAlignment="Top"><Run Text="Добавить "/><Run Text="товар"/></TextBlock>
+        <TextBox x:Name="NameTB" BorderBrush="#201F4E" BorderThickness="2" HorizontalAlignment="Left" Height="32" Margin="177,61,0,0" 
+            TextWrapping="Wrap" Text="" VerticalAlignment="Top" FontSize="14" Width="196"/>
+        <TextBlock HorizontalAlignment="Left" Margin="180,42,0,0" TextWrapping="Wrap" FontSize="14" VerticalAlignment="Top"><Run Text="Добавить "/><Run Text="товар"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="180,100,0,0" TextWrapping="Wrap" FontSize="14" VerticalAlignment="Top" Width="116"><Run Text="Тип прод"/><Run Text="у"/><Run Text="кта"/></TextBlock>
+        <TextBox x:Name="TypeTB" BorderBrush="#201F4E" BorderThickness="2" HorizontalAlignment="Left"  Height="34"   Margin="177,119,0,0" AcceptsReturn="True" 
+            TextWrapping="Wrap" Text="" VerticalAlignment="Top" FontSize="10" Width="196"/>
+        <TextBlock HorizontalAlignment="Left" Margin="417,100,0,0" TextWrapping="Wrap" Text="Цена" FontSize="14" VerticalAlignment="Top"/>
+        <TextBox x:Name="PriceTB" BorderBrush="#201F4E" MaxLength="7"  BorderThickness="2" HorizontalAlignment="Left" Height="32" Margin="417,119,0,0" 
+            TextWrapping="Wrap" Text="" VerticalAlignment="Top" FontSize="14" Width="117" PreviewTextInput="PriceTB_PreviewTextInput"/>
+        <Button x:Name="btn_Image" Content="Добавить фото" Margin="174,224,451,152" Click="btn_Image_Click" BorderBrush="Black" BorderThickness="5">
+            <Button.Template>
+                <ControlTemplate  TargetType="{x:Type Button}">
+                    <Grid>
+                        <Rectangle RadiusX="10" RadiusY="10" Fill="#201F4E" Stroke="Black" StrokeThickness="5"/>
+                        <Label Content="{TemplateBinding Content}"   Foreground="White" HorizontalAlignment="Center"
+                            VerticalAlignment="Center" FontSize="20"/>
+                    </Grid>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Image x:Name="playim" HorizontalAlignment="Left" Height="81" Margin="366,228,0,0" VerticalAlignment="Top" Width="84" 
+            RenderTransformOrigin="0.84,0.515" />
+        <Button x:Name="btn_ImageDel" Content="Удалить фото" Margin="174,272,451,86" Click="btn_ImageDel_Click" 
+            BorderBrush="Black" BorderThickness="5">
+            <Button.Template>
+                <ControlTemplate  TargetType="{x:Type Button}">
+                    <Grid>
+                        <Rectangle RadiusX="10" RadiusY="10" Fill="#201F4E" Stroke="Black" StrokeThickness="5" Margin="0,0,0,10"/>
+                        <Label Content="{TemplateBinding Content}"   Foreground="White" HorizontalAlignment="Center"
+                            VerticalAlignment="Center" FontSize="20"/>
+                    </Grid>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Button x:Name="btn_Create" Content="Добавить" Margin="180,364,444,10" Click="btn_Create_Click" 
+            BorderBrush="Black" BorderThickness="5">
+            <Button.Template>
+                <ControlTemplate  TargetType="{x:Type Button}">
+                    <Grid>
+                        <Rectangle RadiusX="10" RadiusY="10" Fill="#201F4E" Stroke="Black" StrokeThickness="5" Margin="0,0,0,10"/>
+                        <Label Content="{TemplateBinding Content}"   Foreground="White" HorizontalAlignment="Center"
+                            VerticalAlignment="Center" FontSize="20"/>
+                    </Grid>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Rectangle Fill="Transparent" Stroke="Black" StrokeThickness="3"  HorizontalAlignment="Left" Height="89" Margin="366,228,0,0" VerticalAlignment="Top" Width="98"/>
+        <Button x:Name="btn_Clear" Content="Очистить" Margin="366,362,262,9" Click="btn_Clear_Click" 
+            BorderBrush="Black" BorderThickness="5">
+            <Button.Template>
+                <ControlTemplate  TargetType="{x:Type Button}">
+                    <Grid>
+                        <Rectangle RadiusX="10" RadiusY="10" Fill="#201F4E" Stroke="Black" StrokeThickness="5" Margin="0,0,0,10"/>
+                        <Label Content="{TemplateBinding Content}"   Foreground="White" HorizontalAlignment="Center"
+                            VerticalAlignment="Center" FontSize="20"/>
+                    </Grid>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <TextBlock HorizontalAlignment="Left" Margin="417,42,0,0" TextWrapping="Wrap" FontSize="14" VerticalAlignment="Top" Width="116" Text="Материалы"/>
+        <TextBox x:Name="MaterialTB" BorderBrush="#201F4E" BorderThickness="2" HorizontalAlignment="Left"  Height="32"   Margin="417,61,0,0" AcceptsReturn="True" 
+            TextWrapping="Wrap" Text="" VerticalAlignment="Top" FontSize="10" Width="200" RenderTransformOrigin="0.5,0.5">
+            <TextBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-0.17"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </TextBox.RenderTransform>
+        </TextBox>
+        <TextBlock HorizontalAlignment="Left" Margin="180,166,0,0" TextWrapping="Wrap" FontSize="14" VerticalAlignment="Top" Width="116" Text="Артикул"/>
+        <TextBox x:Name="ArticleTB" BorderBrush="#201F4E" BorderThickness="2" HorizontalAlignment="Left"  Height="34"   Margin="177,185,0,0" AcceptsReturn="True" 
+            TextWrapping="Wrap" Text="" VerticalAlignment="Top" FontSize="10" Width="196"/>
     </Grid>
+
 </Window>
