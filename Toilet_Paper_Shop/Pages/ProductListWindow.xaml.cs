@@ -15,14 +15,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Toilet_Paper_Shop.Model;
 
-namespace Toilet_Paper_Shop
+namespace Toilet_Paper_Shop.Pages
 {
     /// <summary>
     /// Логика взаимодействия для ProductListWindow.xaml
     /// </summary>
     public partial class ProductListWindow : Window
     {
-        public static Model.ToiletPaper_dbEntities2 db = new Model.ToiletPaper_dbEntities2();
+        public static Model.ToiletPaper_dbEntities db = new Model.ToiletPaper_dbEntities();
         Model.Product prod1;
        
         public ProductListWindow()

@@ -13,10 +13,10 @@ namespace Toilet_Paper_Shop.Model
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class ToiletPaper_dbEntities2 : DbContext
+    public partial class ToiletPaper_dbEntities : DbContext
     {
-        public ToiletPaper_dbEntities2()
-            : base("name=ToiletPaper_dbEntities2")
+        public ToiletPaper_dbEntities()
+            : base("name=ToiletPaper_dbEntities")
         {
         }
     

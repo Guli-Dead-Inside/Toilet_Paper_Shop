@@ -263,7 +263,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="ToiletPaper_dbEntities2" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="ToiletPaper_dbEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Material" EntityType="Self.Material" />
           <EntitySet Name="MaterialProd" EntityType="Self.MaterialProd" />
           <EntitySet Name="MaterialsAndProducts" EntityType="Self.MaterialsAndProducts" />
@@ -295,7 +295,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище ToiletPaper_dbModelContainer" CdmEntityContainer="ToiletPaper_dbEntities2">
+        <EntityContainerMapping StorageEntityContainer="Хранилище ToiletPaper_dbModelContainer" CdmEntityContainer="ToiletPaper_dbEntities">
           <EntitySetMapping Name="Material">
             <EntityTypeMapping TypeName="ToiletPaper_dbModel.Material">
               <MappingFragment StoreEntitySet="Material">
