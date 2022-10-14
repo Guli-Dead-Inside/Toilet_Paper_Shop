@@ -14,9 +14,6 @@ using System.Windows.Shapes;
 
 namespace Toilet_Paper_Shop.Pages
 {
-    /// <summary>
-    /// Логика взаимодействия для InsertListWindow.xaml
-    /// </summary>
     public partial class InsertListWindow : Window
     {
         public InsertListWindow()

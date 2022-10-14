@@ -5,53 +5,110 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Toilet_Paper_Shop.Pages"
         mc:Ignorable="d"
-        Title="ProductListWindow" Height="494.262" Width="882.377">
+        Title="ProductListWindow" MinHeight="600" MinWidth="900" Width="900" Height="600">
     <Grid>
-        <StackPanel Margin="5,5"  Width="150" HorizontalAlignment="Left" >
-            <TextBox x:Name="SearchTB" TextWrapping="Wrap" TextChanged="txtName_TextChanged" />
-        </StackPanel>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition  Height="1.5*"/>
+            <RowDefinition  Height="10*" />
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
 
-        <ListView x:Name="PaperLst" Margin="5,27,130,90" Control.MouseDoubleClick="PaperLst_MouseDoubleClick">
+        <TextBox x:Name="SearchTB" 
+                 TextWrapping="Wrap" TextChanged="txtName_TextChanged" 
+                 HorizontalAlignment="Center" VerticalAlignment="Center"
+                 Grid.Column="0"
+                 MinHeight="30" MinWidth="250" 
+                 Height="30" Width="400" 
+                 MaxHeight="120" MaxWidth="750"/>
+
+        <ListView x:Name="PaperLst" Margin="20, 0, 20, 0"
+                  Grid.Row="1" Grid.ColumnSpan="3" 
+                  Control.MouseDoubleClick="PaperLst_MouseDoubleClick">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Orientation="Horizontal"  >
-                        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left" Height="100" Width="100">
-                            <Image  Height="50" Width="100" Margin="10" x:Name="PictureI" Source="{Binding Picture}"/>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
+
+                        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left" >
+                            <Image  Height="80" Width="80" Margin="15" x:Name="PictureI" Source="{Binding Picture}"/>
                         </StackPanel>
-                        <StackPanel>
+
+                        <StackPanel >
                             <TextBlock Text="{Binding TypeProd.NameType}"/>
+                            <TextBlock Text="{Binding Id_Prod}"/>
+
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="Материалы:"/>
+                                <TextBlock Margin="0,5,0,0" Text="{Binding Material.Name}"/>
+                            </StackPanel>
+                            
+                        </StackPanel>
+
+                        <StackPanel>
                             <TextBlock Text="{Binding Name}"/>
                         </StackPanel>
 
-                        <StackPanel>
-                            <TextBlock Text="{Binding Id_Prod}"/>
-                            <Label Content="Материалы:"/>
-                            <TextBlock Text="{Binding Material.Name}"/>
+                        <StackPanel HorizontalAlignment="Right" VerticalAlignment="Top" Margin="5">
+                            <TextBlock Margin="5" HorizontalAlignment="Right" VerticalAlignment="Top" Text="{Binding MinCostForAgent}"/>
                         </StackPanel>
-                        <StackPanel>
-                            <TextBlock Text="{Binding MinCostForAgent}"/>
-                        </StackPanel>
+
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Bottom">
-            <Button x:Name="BLeft" Click="BLeft_Click" Content="Left" Width="50" Height="25" Margin="5"/>
-            <ScrollViewer Height="75" MaxWidth="300" Margin="5" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+
+        <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Center" 
+                   Grid.Column="2" Grid.Row="2">
+            <Button x:Name="BLeft" 
+                    Background="White" BorderBrush="White"
+                    MinWidth="25" MinHeight="25" Margin="0, 5, 0, 5"
+                    Click="BLeft_Click" Content="&lt;"/>
+            <ScrollViewer MinHeight="30" MinWidth="100" Margin="5"
+                          ScrollViewer.HorizontalScrollBarVisibility="Hidden" 
+                          ScrollViewer.VerticalScrollBarVisibility="Hidden">
                 <WrapPanel  x:Name="WPButtons"/>
             </ScrollViewer>
-            <Button x:Name="BRight" Click="BRight_Click" Content="Right" Margin="5" Height="25" Width="50"/>
+            <Button x:Name="BRight" 
+                    Background="White" BorderBrush="White"
+                    Margin="0, 5, 0, 5" MinHeight="25" MinWidth="25"
+                    Click="BRight_Click" Content="&gt;" />
         </WrapPanel>
 
 
-        <ComboBox x:Name="CBNumberWrite" SelectedIndex="0" SelectionChanged="CBNumberWrite_SelectionChanged" HorizontalAlignment="Left" Margin="754,0,0,0" VerticalAlignment="Top" Width="120" Visibility="Hidden"/>
-        <ComboBox x:Name="FilterCB"  SelectionChanged="FilterCB_SelectionChanged" HorizontalAlignment="Left" Margin="181,0,0,0" VerticalAlignment="Top" Width="120">
+        <ComboBox x:Name="CBNumberWrite" SelectedIndex="0" 
+                  SelectionChanged="CBNumberWrite_SelectionChanged" 
+                  HorizontalAlignment="Left" VerticalAlignment="Top" 
+                  Visibility="Hidden"/>
+
+        <ComboBox x:Name="FilterCB"  Grid.Column="2"
+                  SelectionChanged="FilterCB_SelectionChanged"
+                  HorizontalAlignment="Center"  VerticalAlignment="Center" 
+                  MinHeight="20" MinWidth="180">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Background="White" x:Name="TypeProd_Name" Text="{Binding NameType}"/>
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
-        <Button x:Name="btn_add" Content="Добавить"  Click="btn_add_Click" Background="White" HorizontalAlignment="Left" Margin="34,409,0,0" VerticalAlignment="Top" Width="108" RenderTransformOrigin="-4.535,-0.883" Height="22"/>
+
+        <ComboBox x:Name="SortCB"  Grid.Column="1"
+                  HorizontalAlignment="Center"  VerticalAlignment="Center" 
+                  MinHeight="20" MinWidth="180">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Background="White" x:Name="TypeProd_Name"/>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+
+        <Button x:Name="btn_add" Content="Добавить"  
+                Click="btn_add_Click" Background="White" 
+                HorizontalAlignment="Center" VerticalAlignment="Center" 
+                Grid.Column="1" Grid.Row="2"
+                MinWidth="120" MinHeight="30"/>
     </Grid>
 </Window>

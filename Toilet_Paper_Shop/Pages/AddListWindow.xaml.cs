@@ -18,12 +18,10 @@ using Toilet_Paper_Shop.Model;
 
 namespace Toilet_Paper_Shop.Pages
 {
-    /// <summary>
-    /// Логика взаимодействия для AddListWindow.xaml
-    /// </summary>
     public partial class AddListWindow : Window
     {
-        public static ToiletPaper_dbEntities db = new Model.ToiletPaper_dbEntities();
+        public static ToiletPaper_dbEntities1 db = new Model.ToiletPaper_dbEntities1();
+        //public static ToiletPaper_dbEntities db = new Model.ToiletPaper_dbEntities();
         OpenFileDialog ofdImage = new OpenFileDialog();
         public AddListWindow()
         {
@@ -31,7 +29,6 @@ namespace Toilet_Paper_Shop.Pages
             foreach (var serv in ProductListWindow.db.TypeProd)
             {
                 TypeCB.ItemsSource = db.TypeProd.ToList();
-
             }
         }
 
@@ -47,7 +44,6 @@ namespace Toilet_Paper_Shop.Pages
                 image.EndInit();
                 playim.Source = image;
             }
-
         }
 
         private void PriceTB_PreviewTextInput(object sender, TextCompositionEventArgs e)
@@ -93,7 +89,6 @@ namespace Toilet_Paper_Shop.Pages
                 {
                     MessageBox.Show("Complete!");
                 }
-
             }
         }
 
