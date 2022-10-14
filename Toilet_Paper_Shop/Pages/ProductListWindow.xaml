@@ -31,32 +31,34 @@
                   Control.MouseDoubleClick="PaperLst_MouseDoubleClick">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
+                    <Border BorderBrush="Black" BorderThickness="1" Height="Auto" Width="Auto">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
 
-                        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left" >
-                            <Image  Height="80" Width="80" Margin="15" x:Name="PictureI" Source="{Binding Picture}"/>
-                        </StackPanel>
-
-                        <StackPanel >
-                            <TextBlock Text="{Binding TypeProd.NameType}"/>
-                            <TextBlock Text="{Binding Id_Prod}"/>
-
-                            <StackPanel Orientation="Horizontal">
-                                <Label Content="Материалы:"/>
-                                <TextBlock Margin="0,5,0,0" Text="{Binding Material.Name}"/>
+                            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left" >
+                                <Image  Height="80" Width="80" Margin="15" x:Name="PictureI" Source="{Binding Picture}"/>
                             </StackPanel>
+
+                            <StackPanel >
+                                <TextBlock Text="{Binding TypeProd.NameType}"/>
+                                <TextBlock Text="{Binding Id_Prod}"/>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="Материалы:"/>
+                                    <TextBlock Margin="0,5,0,0" Text="{Binding Material.Name}"/>
+                                </StackPanel>
                             
-                        </StackPanel>
+                            </StackPanel>
 
-                        <StackPanel>
-                            <TextBlock Text="{Binding Name}"/>
-                        </StackPanel>
+                            <StackPanel>
+                                <TextBlock Text="{Binding Name}"/>
+                            </StackPanel>
 
-                        <StackPanel HorizontalAlignment="Right" VerticalAlignment="Top" Margin="5">
-                            <TextBlock Margin="5" HorizontalAlignment="Right" VerticalAlignment="Top" Text="{Binding MinCostForAgent}"/>
-                        </StackPanel>
+                            <StackPanel HorizontalAlignment="Right" VerticalAlignment="Top" Margin="5">
+                                <TextBlock Margin="5" HorizontalAlignment="Right" VerticalAlignment="Top" Text="{Binding MinCostForAgent}"/>
+                            </StackPanel>
 
-                    </StackPanel>
+                        </StackPanel>
+                    </Border>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
