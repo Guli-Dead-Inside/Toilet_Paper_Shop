@@ -153,5 +153,12 @@ namespace Toilet_Paper_Shop.Pages
             this.Close();
             insertwin.Show();
         }
+
+        private void btn_add_Click(object sender, RoutedEventArgs e)
+        {
+            AddListWindow add = new AddListWindow();
+            this.Close();
+            add.Show();
+        }
     }
 }

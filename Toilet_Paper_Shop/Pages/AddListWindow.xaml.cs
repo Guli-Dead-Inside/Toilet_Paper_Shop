@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -27,6 +28,11 @@ namespace Toilet_Paper_Shop.Pages
         public AddListWindow()
         {
             InitializeComponent();
+            foreach (var serv in ProductListWindow.db.TypeProd)
+            {
+                TypeCB.ItemsSource = db.TypeProd.ToList();
+
+            }
         }
 
         private void btn_Image_Click(object sender, RoutedEventArgs e)
@@ -59,26 +65,25 @@ namespace Toilet_Paper_Shop.Pages
 
         private void btn_Create_Click(object sender, RoutedEventArgs e)
         {
-            if (NameTB.Text == "" || PriceTB.Text == "" || TypeTB.Text == "" || MaterialTB.Text == "" || ArticleTB.Text == "")
+            if (NameTB.Text == "" || PriceTB.Text == "" || TypeCB.Text == "" || MaterialTB.Text == "" || ArticleTB.Text == "")
             {
                 MessageBox.Show("Введите ваши данные!");
             }
             else
             {
                 Product prod = new Product();
-                Material mat = new Material();
-                TypeProd type = new TypeProd();
+             
                 prod.Name = NameTB.Text;
                 PriceTB.Text = Convert.ToString(prod.MinCostForAgent);
-                mat.Name = MaterialTB.Text;
+                prod.Id_Material = Convert.ToInt32(MaterialTB.Text);
                 ArticleTB.Text = Convert.ToString(prod.Id_Prod);
-                type.NameType = TypeTB.Text;
-                ProductListWindow.db.Product.Add(prod);
-                ProductListWindow.db.Material.Add(mat);
-                ProductListWindow.db.TypeProd.Add(type);
+            
+                prod.Picture = File.ReadAllBytes(ofdImage.FileName);
+                db.Product.Add(prod);
+              
                 try
                 {
-                    ProductListWindow.db.SaveChanges();
+                    db.SaveChanges();
                 }
                 catch
                 {
@@ -103,6 +108,10 @@ namespace Toilet_Paper_Shop.Pages
             playim.Source = image;
         }
 
-        
+        private void TypeCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var typeName = ((TypeProd)TypeCB.SelectedItem).NameType;
+            var type = ProductListWindow.db.TypeProd.Where(x => x.NameType == typeName).FirstOrDefault();
+        }
     }
 }

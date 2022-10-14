@@ -12,8 +12,6 @@
             TextWrapping="Wrap" Text="" VerticalAlignment="Top" FontSize="14" Width="196"/>
         <TextBlock HorizontalAlignment="Left" Margin="180,42,0,0" TextWrapping="Wrap" FontSize="14" VerticalAlignment="Top"><Run Text="Добавить "/><Run Text="товар"/></TextBlock>
         <TextBlock HorizontalAlignment="Left" Margin="180,100,0,0" TextWrapping="Wrap" FontSize="14" VerticalAlignment="Top" Width="116"><Run Text="Тип прод"/><Run Text="у"/><Run Text="кта"/></TextBlock>
-        <TextBox x:Name="TypeTB" BorderBrush="#201F4E" BorderThickness="2" HorizontalAlignment="Left"  Height="34"   Margin="177,119,0,0" AcceptsReturn="True" 
-            TextWrapping="Wrap" Text="" VerticalAlignment="Top" FontSize="10" Width="196"/>
         <TextBlock HorizontalAlignment="Left" Margin="417,100,0,0" TextWrapping="Wrap" Text="Цена" FontSize="14" VerticalAlignment="Top"/>
         <TextBox x:Name="PriceTB" BorderBrush="#201F4E" MaxLength="7"  BorderThickness="2" HorizontalAlignment="Left" Height="32" Margin="417,119,0,0" 
             TextWrapping="Wrap" Text="" VerticalAlignment="Top" FontSize="14" Width="117" PreviewTextInput="PriceTB_PreviewTextInput"/>
@@ -82,6 +80,13 @@
         <TextBlock HorizontalAlignment="Left" Margin="180,166,0,0" TextWrapping="Wrap" FontSize="14" VerticalAlignment="Top" Width="116" Text="Артикул"/>
         <TextBox x:Name="ArticleTB" BorderBrush="#201F4E" BorderThickness="2" HorizontalAlignment="Left"  Height="34"   Margin="177,185,0,0" AcceptsReturn="True" 
             TextWrapping="Wrap" Text="" VerticalAlignment="Top" FontSize="10" Width="196"/>
+        <ComboBox x:Name="TypeCB"  SelectionChanged="TypeCB_SelectionChanged" HorizontalAlignment="Left" Margin="180,129,0,0" VerticalAlignment="Top" Width="181">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Background="White" x:Name="TypeProd_Name" Text="{Binding NameType}"/>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
     </Grid>
 
 </Window>
