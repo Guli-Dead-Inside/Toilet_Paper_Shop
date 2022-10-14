@@ -13,10 +13,10 @@ namespace Toilet_Paper_Shop.Model
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class ToiletPaper_dbEntities1 : DbContext
+    public partial class ToiletPaper_dbEntities3 : DbContext
     {
-        public ToiletPaper_dbEntities1()
-            : base("name=ToiletPaper_dbEntities1")
+        public ToiletPaper_dbEntities3()
+            : base("name=ToiletPaper_dbEntities3")
         {
         }
     
@@ -26,10 +26,10 @@ namespace Toilet_Paper_Shop.Model
         }
     
         public virtual DbSet<Material> Material { get; set; }
-        public virtual DbSet<MaterialProd> MaterialProd { get; set; }
         public virtual DbSet<MaterialsAndProducts> MaterialsAndProducts { get; set; }
         public virtual DbSet<Product> Product { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<TypeMaterial> TypeMaterial { get; set; }
         public virtual DbSet<TypeProd> TypeProd { get; set; }
     }
 }

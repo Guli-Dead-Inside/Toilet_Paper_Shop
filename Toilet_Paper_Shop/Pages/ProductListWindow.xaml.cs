@@ -21,8 +21,7 @@ namespace Toilet_Paper_Shop.Pages
 {
     public partial class ProductListWindow : Window
     {
-        public static ToiletPaper_dbEntities1 db = new Model.ToiletPaper_dbEntities1();
-        //public static ToiletPaper_dbEntities db = new Model.ToiletPaper_dbEntities();
+        public static ToiletPaper_dbEntities3 db = new Model.ToiletPaper_dbEntities3();
         Product prod1;
        
         public ProductListWindow()

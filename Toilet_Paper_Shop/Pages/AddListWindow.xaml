@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Toilet_Paper_Shop.Pages"
         mc:Ignorable="d" ResizeMode="NoResize"
-        Title="AddListWindow" MinHeight="450" MinWidth="800" MaxHeight="1024" MaxWidth="1920" >
+        Title="AddListWindow" MinHeight="450" MinWidth="800" MaxHeight="1024" Height="550" Width="800" MaxWidth="1920" >
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
@@ -153,7 +153,7 @@
                   Grid.Column="1" Grid.Row="2" Width="149" >
             <ComboBox.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Background="White" x:Name="TypeProd_Name" Text="{Binding NameType}"/>
+                    <TextBlock Background="White" x:Name="TypeProd_Name" Text="{Binding Id}"/>
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>

@@ -20,8 +20,7 @@ namespace Toilet_Paper_Shop.Pages
 {
     public partial class AddListWindow : Window
     {
-        public static ToiletPaper_dbEntities1 db = new Model.ToiletPaper_dbEntities1();
-        //public static ToiletPaper_dbEntities db = new Model.ToiletPaper_dbEntities();
+        public static ToiletPaper_dbEntities3 db = new Model.ToiletPaper_dbEntities3();
         OpenFileDialog ofdImage = new OpenFileDialog();
         public AddListWindow()
         {
@@ -67,28 +66,22 @@ namespace Toilet_Paper_Shop.Pages
             }
             else
             {
-                Product prod = new Product();
-             
-                prod.Name = NameTB.Text;
-                PriceTB.Text = Convert.ToString(prod.MinCostForAgent);
-                prod.Id_Material = Convert.ToInt32(MaterialTB.Text);
-                ArticleTB.Text = Convert.ToString(prod.Id_Prod);
-            
-                prod.Picture = File.ReadAllBytes(ofdImage.FileName);
-                db.Product.Add(prod);
-              
-                try
-                {
+                    Product prod = new Product();
+
+                    prod.Name = NameTB.Text;
+                    prod.MinCostForAgent = Convert.ToInt32(PriceTB.Text);
+                    prod.Id_Material = Convert.ToInt32(MaterialTB.Text);
+                    prod.Id_Prod = Convert.ToInt32(ArticleTB.Text);
+                    var TypeName = TypeCB.SelectedItem;
+                    var temp = ((TypeProd)TypeName).Id;
+
+                    prod.Id_Type = temp;
+
+                    prod.Picture = File.ReadAllBytes(ofdImage.FileName);
+                    db.Product.Add(prod);
                     db.SaveChanges();
-                }
-                catch
-                {
-                    MessageBox.Show("Такие данные уже существует!");
-                }
-                finally
-                {
-                    MessageBox.Show("Complete!");
-                }
+                    MessageBox.Show("Complete");
+
             }
         }
 
@@ -105,8 +98,8 @@ namespace Toilet_Paper_Shop.Pages
 
         private void TypeCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var typeName = ((TypeProd)TypeCB.SelectedItem).NameType;
-            var type = ProductListWindow.db.TypeProd.Where(x => x.NameType == typeName).FirstOrDefault();
+            var typeName = ((TypeProd)TypeCB.SelectedItem).Id;
+            var type = ProductListWindow.db.TypeProd.Where(x => x.Id == typeName).FirstOrDefault();
         }
     }
 }
