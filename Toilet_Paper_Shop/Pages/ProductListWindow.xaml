@@ -99,12 +99,9 @@
 
         <ComboBox x:Name="SortCB"  Grid.Column="1"
                   HorizontalAlignment="Center"  VerticalAlignment="Center" 
-                  MinHeight="20" MinWidth="180">
-            <ComboBox.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Background="White" x:Name="TypeProd_Name"/>
-                </DataTemplate>
-            </ComboBox.ItemTemplate>
+                  MinHeight="20" MinWidth="180" SelectionChanged="SortCB_SelectionChanged">
+            <TextBlock Text="по цене(возрастание)"/>
+            <TextBlock Text="по цене(убывание)"/>
         </ComboBox>
 
         <Button x:Name="btn_add" Content="Добавить"  

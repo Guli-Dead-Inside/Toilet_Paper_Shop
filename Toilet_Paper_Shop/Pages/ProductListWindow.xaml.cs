@@ -2,6 +2,7 @@
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -35,7 +36,10 @@ namespace Toilet_Paper_Shop.Pages
             foreach (var serv in ProductListWindow.db.TypeProd)
             {
                 FilterCB.ItemsSource = db.TypeProd.ToList();
-
+            }
+            foreach (var serv in ProductListWindow.db.TypeMaterial)
+            {
+                SortCB.ItemsSource = db.TypeMaterial.ToList();
             }
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(PaperLst.ItemsSource);
             view.Filter = UserFilter; 
@@ -142,13 +146,16 @@ namespace Toilet_Paper_Shop.Pages
 
         private void txtName_TextChanged(object sender, TextChangedEventArgs e)
         {
-            CollectionViewSource.GetDefaultView(PaperLst.ItemsSource).Refresh();
+            var TBSQ = db.Product.OrderBy(a => a.Name).ToList();
+            TBSQ = TBSQ.Where(a => a.Name.ToLower().Contains(SearchTB.Text.ToLower())).ToList();
+            PaperLst.ItemsSource = TBSQ;
         }
 
         private void FilterCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var typeName = ((TypeProd)FilterCB.SelectedItem).NameType;
             var type = ProductListWindow.db.TypeProd.Where(x => x.NameType == typeName).FirstOrDefault();
+            PaperLst.ItemsSource = db.Product.Where(x => x.TypeProd.NameType == typeName).ToList();
         }
 
         private void PaperLst_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -163,6 +170,26 @@ namespace Toilet_Paper_Shop.Pages
             AddListWindow add = new AddListWindow();
             this.Close();
             add.Show();
+        }
+
+        private void SortCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (SortCB.SelectedIndex == 0)
+            {
+                PaperLst.ItemsSource = db.Product.ToList();
+                CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(PaperLst.ItemsSource);
+                view.SortDescriptions.Add(new SortDescription("Product.MinCostForAgent", ListSortDirection.Ascending));
+
+
+            }
+            else if (SortCB.SelectedIndex == 1)
+            {
+                PaperLst.ItemsSource = db.Product.ToList();
+                CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(PaperLst.ItemsSource);
+                view.SortDescriptions.Add(new SortDescription("Product.MinCostForAgent", ListSortDirection.Descending));
+
+
+            }
         }
     }
 }
