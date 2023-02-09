@@ -32,14 +32,9 @@ namespace Toilet_Paper_Shop.Pages
             PaperLst.ItemsSource = db.Product.ToList();
             RefreshComboBox();
             RefreshButtons();
-
             foreach (var serv in ProductListWindow.db.TypeProd)
             {
                 FilterCB.ItemsSource = db.TypeProd.ToList();
-            }
-            foreach (var serv in ProductListWindow.db.TypeMaterial)
-            {
-                SortCB.ItemsSource = db.TypeMaterial.ToList();
             }
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(PaperLst.ItemsSource);
             view.Filter = UserFilter; 
@@ -189,6 +184,31 @@ namespace Toilet_Paper_Shop.Pages
                 view.SortDescriptions.Add(new SortDescription("Product.MinCostForAgent", ListSortDirection.Descending));
 
 
+            }
+        }
+
+        private void DelBTN_Click(object sender, RoutedEventArgs e)
+        {
+            var q = PaperLst.SelectedItem as Product;
+            if (q == null)
+            {
+                MessageBox.Show("Ничего не выбрано!");
+                return;
+            }
+            MessageBoxResult result = MessageBox.Show("Вы действительно хотите удалить строку?", "Удалить?", MessageBoxButton.YesNoCancel);
+            if (result == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    db.Product.Remove(q);
+                    db.SaveChanges();
+                    PaperLst.ItemsSource = db.Product.ToList();
+                    MessageBox.Show("Выполнено!");
+                }
+                catch
+                {
+                    MessageBox.Show("Ошибка!");
+                }
             }
         }
     }

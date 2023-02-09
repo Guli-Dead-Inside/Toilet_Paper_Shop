@@ -46,7 +46,7 @@
                                     <Label Content="Материалы:"/>
                                     <TextBlock Margin="0,5,0,0" Text="{Binding Material.Name}"/>
                                 </StackPanel>
-                            
+
                             </StackPanel>
 
                             <StackPanel>
@@ -109,5 +109,9 @@
                 HorizontalAlignment="Center" VerticalAlignment="Center" 
                 Grid.Column="1" Grid.Row="2"
                 MinWidth="120" MinHeight="30"/>
+        <Button x:Name="DelBTN" Content="Удалить"  
+            Click="DelBTN_Click" Background="White" 
+            HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="2"
+            MinWidth="120" MinHeight="30" Margin="320,0,0,0"/>
     </Grid>
 </Window>
