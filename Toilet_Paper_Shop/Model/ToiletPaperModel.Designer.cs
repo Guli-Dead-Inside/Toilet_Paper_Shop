@@ -1,4 +1,4 @@
-﻿// Создание кода T4 для модели "C:\Users\211923\Source\Repos\Toilet_Paper_Shop3\Toilet_Paper_Shop\Model\Toilet_Paper_Shop.edmx" включено. 
+﻿// Создание кода T4 для модели "C:\Users\211912\Source\Repos\Toilet_Paper_Shop1\Toilet_Paper_Shop\Model\ToiletPaperModel.edmx" включено. 
 // Чтобы включить формирование кода прежних версий, измените значение свойства "Стратегия создания кода" конструктора
 // на "Legacy ObjectContext". Это свойство доступно в окне "Свойства", если модель
 // открыта в конструкторе.

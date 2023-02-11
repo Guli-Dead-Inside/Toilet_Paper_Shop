@@ -14,10 +14,9 @@ namespace Toilet_Paper_Shop.Model
     
     public partial class MaterialsAndProducts
     {
-        public int Id { get; set; }
         public int Id_Prod { get; set; }
         public int Id_Material { get; set; }
-        public Nullable<int> RequiredAmountMaterials1 { get; set; }
+        public Nullable<int> RequiredAmountMaterials { get; set; }
     
         public virtual Material Material { get; set; }
         public virtual Product Product { get; set; }

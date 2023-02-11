@@ -30,7 +30,7 @@ namespace Toilet_Paper_Shop.Model
         public Nullable<int> MinimumBalance { get; set; }
         public Nullable<decimal> Cost { get; set; }
     
-        public virtual TypeMaterial TypeMaterial { get; set; }
+        public virtual MaterialProd MaterialProd { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MaterialsAndProducts> MaterialsAndProducts { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

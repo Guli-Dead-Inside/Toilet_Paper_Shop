@@ -20,7 +20,7 @@ namespace Toilet_Paper_Shop.Pages
 {
     public partial class AddListWindow : Window
     {
-        public static ToiletPaper_dbEntities3 db = new Model.ToiletPaper_dbEntities3();
+        public static ToiletPaperShop_dbEntities db = new ToiletPaperShop_dbEntities();
         OpenFileDialog ofdImage = new OpenFileDialog();
         public AddListWindow()
         {

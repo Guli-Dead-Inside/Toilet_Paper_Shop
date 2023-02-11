@@ -75,6 +75,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\DelWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\InsertListWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -86,40 +90,43 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\Material.cs">
-      <DependentUpon>Toilet_Paper_Shop.tt</DependentUpon>
+      <DependentUpon>ToiletPaperModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\MaterialProd.cs">
+      <DependentUpon>ToiletPaperModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\MaterialsAndProducts.cs">
-      <DependentUpon>Toilet_Paper_Shop.tt</DependentUpon>
+      <DependentUpon>ToiletPaperModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Product.cs">
-      <DependentUpon>Toilet_Paper_Shop.tt</DependentUpon>
+      <DependentUpon>ToiletPaperModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\sysdiagrams.cs">
-      <DependentUpon>Toilet_Paper_Shop.tt</DependentUpon>
+      <DependentUpon>ToiletPaperModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\Toilet_Paper_Shop.Context.cs">
+    <Compile Include="Model\ToiletPaperModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Toilet_Paper_Shop.Context.tt</DependentUpon>
+      <DependentUpon>ToiletPaperModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\Toilet_Paper_Shop.cs">
+    <Compile Include="Model\ToiletPaperModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Toilet_Paper_Shop.tt</DependentUpon>
+      <DependentUpon>ToiletPaperModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\Toilet_Paper_Shop.Designer.cs">
+    <Compile Include="Model\ToiletPaperModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Toilet_Paper_Shop.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Model\TypeMaterial.cs">
-      <DependentUpon>Toilet_Paper_Shop.tt</DependentUpon>
+      <DependentUpon>ToiletPaperModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Model\TypeProd.cs">
-      <DependentUpon>Toilet_Paper_Shop.tt</DependentUpon>
+      <DependentUpon>ToiletPaperModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Pages\AddListWindow.xaml.cs">
       <DependentUpon>AddListWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\DelWindow.xaml.cs">
+      <DependentUpon>DelWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\InsertListWindow.xaml.cs">
       <DependentUpon>InsertListWindow.xaml</DependentUpon>
@@ -144,12 +151,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="Model\Toilet_Paper_Shop.edmx">
+    <EntityDeploy Include="Model\ToiletPaperModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Toilet_Paper_Shop.Designer.cs</LastGenOutput>
+      <LastGenOutput>ToiletPaperModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Model\Toilet_Paper_Shop.edmx.diagram">
-      <DependentUpon>Toilet_Paper_Shop.edmx</DependentUpon>
+    <None Include="Model\ToiletPaperModel.edmx.diagram">
+      <DependentUpon>ToiletPaperModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -167,15 +174,15 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Model\Toilet_Paper_Shop.Context.tt">
+    <Content Include="Model\ToiletPaperModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Toilet_Paper_Shop.edmx</DependentUpon>
-      <LastGenOutput>Toilet_Paper_Shop.Context.cs</LastGenOutput>
+      <DependentUpon>ToiletPaperModel.edmx</DependentUpon>
+      <LastGenOutput>ToiletPaperModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Model\Toilet_Paper_Shop.tt">
+    <Content Include="Model\ToiletPaperModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Toilet_Paper_Shop.edmx</DependentUpon>
-      <LastGenOutput>Toilet_Paper_Shop.cs</LastGenOutput>
+      <DependentUpon>ToiletPaperModel.edmx</DependentUpon>
+      <LastGenOutput>ToiletPaperModel.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

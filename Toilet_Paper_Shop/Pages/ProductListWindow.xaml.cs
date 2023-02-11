@@ -22,7 +22,7 @@ namespace Toilet_Paper_Shop.Pages
 {
     public partial class ProductListWindow : Window
     {
-        public static ToiletPaper_dbEntities3 db = new Model.ToiletPaper_dbEntities3();
+        public static ToiletPaperShop_dbEntities db = new ToiletPaperShop_dbEntities();
         Product prod1;
        
         public ProductListWindow()
@@ -189,27 +189,9 @@ namespace Toilet_Paper_Shop.Pages
 
         private void DelBTN_Click(object sender, RoutedEventArgs e)
         {
-            var q = PaperLst.SelectedItem as Product;
-            if (q == null)
-            {
-                MessageBox.Show("Ничего не выбрано!");
-                return;
-            }
-            MessageBoxResult result = MessageBox.Show("Вы действительно хотите удалить строку?", "Удалить?", MessageBoxButton.YesNoCancel);
-            if (result == MessageBoxResult.Yes)
-            {
-                try
-                {
-                    db.Product.Remove(q);
-                    db.SaveChanges();
-                    PaperLst.ItemsSource = db.Product.ToList();
-                    MessageBox.Show("Выполнено!");
-                }
-                catch
-                {
-                    MessageBox.Show("Ошибка!");
-                }
-            }
+            DelWindow delWindow = new DelWindow();
+            delWindow.Show();
+            this.Close();
         }
     }
 }

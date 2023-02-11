@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище ToiletPaper_dbModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Хранилище ToiletPaperShop_dbModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Material">
           <Key>
             <PropertyRef Name="id" />
@@ -18,14 +18,21 @@
           <Property Name="MinimumBalance" Type="int" />
           <Property Name="Cost" Type="decimal" Precision="18" Scale="2" />
         </EntityType>
+        <EntityType Name="MaterialProd">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="NameMaterials" Type="varchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="MaterialsAndProducts">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="Id_Prod" />
+            <PropertyRef Name="Id_Material" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Id_Prod" Type="int" Nullable="false" />
           <Property Name="Id_Material" Type="int" Nullable="false" />
-          <Property Name="RequiredAmountMaterials1" Type="int" />
+          <Property Name="RequiredAmountMaterials" Type="int" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
@@ -37,7 +44,7 @@
           <Property Name="Picture" Type="image" />
           <Property Name="Id_Type" Type="int" Nullable="false" />
           <Property Name="Count" Type="int" />
-          <Property Name="Id_Material" Type="int" />
+          <Property Name="Id_Material" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -49,13 +56,6 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
-        <EntityType Name="TypeMaterial">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" Nullable="false" />
-          <Property Name="NameMaterials" Type="varchar" MaxLength="50" />
-        </EntityType>
         <EntityType Name="TypeProd">
           <Key>
             <PropertyRef Name="Id" />
@@ -64,10 +64,10 @@
           <Property Name="NameType" Type="varchar" MaxLength="50" />
         </EntityType>
         <Association Name="FK_Material_MaterialProd">
-          <End Role="TypeMaterial" Type="Self.TypeMaterial" Multiplicity="1" />
+          <End Role="MaterialProd" Type="Self.MaterialProd" Multiplicity="1" />
           <End Role="Material" Type="Self.Material" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="TypeMaterial">
+            <Principal Role="MaterialProd">
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="Material">
@@ -123,15 +123,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Хранилище ToiletPaper_dbModelContainer">
+        <EntityContainer Name="Хранилище ToiletPaperShop_dbModelContainer">
           <EntitySet Name="Material" EntityType="Self.Material" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MaterialProd" EntityType="Self.MaterialProd" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MaterialsAndProducts" EntityType="Self.MaterialsAndProducts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TypeMaterial" EntityType="Self.TypeMaterial" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TypeProd" EntityType="Self.TypeProd" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Material_MaterialProd" Association="Self.FK_Material_MaterialProd">
-            <End Role="TypeMaterial" EntitySet="TypeMaterial" />
+            <End Role="MaterialProd" EntitySet="MaterialProd" />
             <End Role="Material" EntitySet="Material" />
           </AssociationSet>
           <AssociationSet Name="FK_MaterialsAndProducts_Material" Association="Self.FK_MaterialsAndProducts_Material">
@@ -155,7 +155,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="ToiletPaper_dbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="ToiletPaperShop_dbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Material">
           <Key>
             <PropertyRef Name="id" />
@@ -168,18 +168,26 @@
           <Property Name="CountStocked" Type="Int32" />
           <Property Name="MinimumBalance" Type="Int32" />
           <Property Name="Cost" Type="Decimal" Precision="18" Scale="2" />
-          <NavigationProperty Name="TypeMaterial" Relationship="Self.FK_Material_MaterialProd" FromRole="Material" ToRole="TypeMaterial" />
+          <NavigationProperty Name="MaterialProd" Relationship="Self.FK_Material_MaterialProd" FromRole="Material" ToRole="MaterialProd" />
           <NavigationProperty Name="MaterialsAndProducts" Relationship="Self.FK_MaterialsAndProducts_Material" FromRole="Material" ToRole="MaterialsAndProducts" />
           <NavigationProperty Name="Product" Relationship="Self.FK_Product_Material" FromRole="Material" ToRole="Product" />
         </EntityType>
+        <EntityType Name="MaterialProd">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="NameMaterials" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Material" Relationship="Self.FK_Material_MaterialProd" FromRole="MaterialProd" ToRole="Material" />
+        </EntityType>
         <EntityType Name="MaterialsAndProducts">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="Id_Prod" />
+            <PropertyRef Name="Id_Material" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Id_Prod" Type="Int32" Nullable="false" />
           <Property Name="Id_Material" Type="Int32" Nullable="false" />
-          <Property Name="RequiredAmountMaterials1" Type="Int32" />
+          <Property Name="RequiredAmountMaterials" Type="Int32" />
           <NavigationProperty Name="Material" Relationship="Self.FK_MaterialsAndProducts_Material" FromRole="MaterialsAndProducts" ToRole="Material" />
           <NavigationProperty Name="Product" Relationship="Self.FK_MaterialsAndProducts_Product" FromRole="MaterialsAndProducts" ToRole="Product" />
         </EntityType>
@@ -193,7 +201,7 @@
           <Property Name="Picture" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="Id_Type" Type="Int32" Nullable="false" />
           <Property Name="Count" Type="Int32" />
-          <Property Name="Id_Material" Type="Int32" />
+          <Property Name="Id_Material" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Material" Relationship="Self.FK_Product_Material" FromRole="Product" ToRole="Material" />
           <NavigationProperty Name="MaterialsAndProducts" Relationship="Self.FK_MaterialsAndProducts_Product" FromRole="Product" ToRole="MaterialsAndProducts" />
           <NavigationProperty Name="TypeProd" Relationship="Self.FK_Product_TypeProd" FromRole="Product" ToRole="TypeProd" />
@@ -208,14 +216,6 @@
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
-        <EntityType Name="TypeMaterial">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="NameMaterials" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Material" Relationship="Self.FK_Material_MaterialProd" FromRole="TypeMaterial" ToRole="Material" />
-        </EntityType>
         <EntityType Name="TypeProd">
           <Key>
             <PropertyRef Name="Id" />
@@ -225,10 +225,10 @@
           <NavigationProperty Name="Product" Relationship="Self.FK_Product_TypeProd" FromRole="TypeProd" ToRole="Product" />
         </EntityType>
         <Association Name="FK_Material_MaterialProd">
-          <End Role="TypeMaterial" Type="Self.TypeMaterial" Multiplicity="1" />
+          <End Role="MaterialProd" Type="Self.MaterialProd" Multiplicity="1" />
           <End Role="Material" Type="Self.Material" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="TypeMaterial">
+            <Principal Role="MaterialProd">
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="Material">
@@ -284,15 +284,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="ToiletPaper_dbEntities3" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="ToiletPaperShop_dbEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Material" EntityType="Self.Material" />
+          <EntitySet Name="MaterialProd" EntityType="Self.MaterialProd" />
           <EntitySet Name="MaterialsAndProducts" EntityType="Self.MaterialsAndProducts" />
           <EntitySet Name="Product" EntityType="Self.Product" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
-          <EntitySet Name="TypeMaterial" EntityType="Self.TypeMaterial" />
           <EntitySet Name="TypeProd" EntityType="Self.TypeProd" />
           <AssociationSet Name="FK_Material_MaterialProd" Association="Self.FK_Material_MaterialProd">
-            <End Role="TypeMaterial" EntitySet="TypeMaterial" />
+            <End Role="MaterialProd" EntitySet="MaterialProd" />
             <End Role="Material" EntitySet="Material" />
           </AssociationSet>
           <AssociationSet Name="FK_MaterialsAndProducts_Material" Association="Self.FK_MaterialsAndProducts_Material">
@@ -317,9 +317,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище ToiletPaper_dbModelContainer" CdmEntityContainer="ToiletPaper_dbEntities3">
+        <EntityContainerMapping StorageEntityContainer="Хранилище ToiletPaperShop_dbModelContainer" CdmEntityContainer="ToiletPaperShop_dbEntities">
           <EntitySetMapping Name="Material">
-            <EntityTypeMapping TypeName="ToiletPaper_dbModel.Material">
+            <EntityTypeMapping TypeName="ToiletPaperShop_dbModel.Material">
               <MappingFragment StoreEntitySet="Material">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -332,18 +332,25 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="MaterialProd">
+            <EntityTypeMapping TypeName="ToiletPaperShop_dbModel.MaterialProd">
+              <MappingFragment StoreEntitySet="MaterialProd">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="NameMaterials" ColumnName="NameMaterials" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="MaterialsAndProducts">
-            <EntityTypeMapping TypeName="ToiletPaper_dbModel.MaterialsAndProducts">
+            <EntityTypeMapping TypeName="ToiletPaperShop_dbModel.MaterialsAndProducts">
               <MappingFragment StoreEntitySet="MaterialsAndProducts">
-                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Id_Prod" ColumnName="Id_Prod" />
                 <ScalarProperty Name="Id_Material" ColumnName="Id_Material" />
-                <ScalarProperty Name="RequiredAmountMaterials1" ColumnName="RequiredAmountMaterials1" />
+                <ScalarProperty Name="RequiredAmountMaterials" ColumnName="RequiredAmountMaterials" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Product">
-            <EntityTypeMapping TypeName="ToiletPaper_dbModel.Product">
+            <EntityTypeMapping TypeName="ToiletPaperShop_dbModel.Product">
               <MappingFragment StoreEntitySet="Product">
                 <ScalarProperty Name="Id_Prod" ColumnName="Id_Prod" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -356,7 +363,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="ToiletPaper_dbModel.sysdiagrams">
+            <EntityTypeMapping TypeName="ToiletPaperShop_dbModel.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -366,16 +373,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TypeMaterial">
-            <EntityTypeMapping TypeName="ToiletPaper_dbModel.TypeMaterial">
-              <MappingFragment StoreEntitySet="TypeMaterial">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="NameMaterials" ColumnName="NameMaterials" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="TypeProd">
-            <EntityTypeMapping TypeName="ToiletPaper_dbModel.TypeProd">
+            <EntityTypeMapping TypeName="ToiletPaperShop_dbModel.TypeProd">
               <MappingFragment StoreEntitySet="TypeProd">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="NameType" ColumnName="NameType" />

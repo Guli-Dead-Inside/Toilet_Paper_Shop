@@ -12,10 +12,10 @@ namespace Toilet_Paper_Shop.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class TypeMaterial
+    public partial class MaterialProd
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public TypeMaterial()
+        public MaterialProd()
         {
             this.Material = new HashSet<Material>();
         }

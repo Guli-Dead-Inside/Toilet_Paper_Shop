@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Toilet_Paper_Shop.Pages"
         mc:Ignorable="d"
-        Title="ProductListWindow" MinHeight="600" MinWidth="900" Width="900" Height="600">
+        Title="ProductListWindow" MinHeight="600" MinWidth="900" Width="900" Height="600" WindowStyle="None" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"/>
@@ -24,11 +24,11 @@
                  Grid.Column="0"
                  MinHeight="30" MinWidth="250" 
                  Height="30" Width="400" 
-                 MaxHeight="120" MaxWidth="750"/>
+                 MaxHeight="120" MaxWidth="750" Background="#CEFFF9"/>
 
         <ListView x:Name="PaperLst" Margin="20, 0, 20, 0"
                   Grid.Row="1" Grid.ColumnSpan="3" 
-                  Control.MouseDoubleClick="PaperLst_MouseDoubleClick">
+                  Control.MouseDoubleClick="PaperLst_MouseDoubleClick" Background="#CEFFF9">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Border BorderBrush="Black" BorderThickness="1" Height="Auto" Width="Auto">
@@ -105,12 +105,12 @@
         </ComboBox>
 
         <Button x:Name="btn_add" Content="Добавить"  
-                Click="btn_add_Click" Background="White" 
+                Click="btn_add_Click" Background="#00CC76" 
                 HorizontalAlignment="Center" VerticalAlignment="Center" 
                 Grid.Column="1" Grid.Row="2"
                 MinWidth="120" MinHeight="30"/>
         <Button x:Name="DelBTN" Content="Удалить"  
-            Click="DelBTN_Click" Background="White" 
+            Click="DelBTN_Click" Background="#00CC76" 
             HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="2"
             MinWidth="120" MinHeight="30" Margin="320,0,0,0"/>
     </Grid>
