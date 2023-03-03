@@ -193,5 +193,13 @@ namespace Toilet_Paper_Shop.Pages
             delWindow.Show();
             this.Close();
         }
+
+        private void UpdateBtn_Click(object sender, RoutedEventArgs e)
+        {
+            PaperLst.ItemsSource = db.TypeProd.ToList();
+
+            SortCB.SelectedItem = null;
+            SearchTB.Clear();
+        }
     }
 }

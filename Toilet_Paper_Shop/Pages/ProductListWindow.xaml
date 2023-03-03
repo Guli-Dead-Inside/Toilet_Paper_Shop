@@ -113,5 +113,9 @@
             Click="DelBTN_Click" Background="#00CC76" 
             HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="2"
             MinWidth="120" MinHeight="30" Margin="320,0,0,0"/>
+        <Button x:Name="UpdateBtn" Content="Обновить"  
+            Click="UpdateBtn_Click" Background="#00CC76" 
+            HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2"
+            MinWidth="120" MinHeight="30"/>
     </Grid>
 </Window>

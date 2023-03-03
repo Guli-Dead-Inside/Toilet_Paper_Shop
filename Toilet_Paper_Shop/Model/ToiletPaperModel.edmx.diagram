@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="aafe8978859440cb94216ed0388a0b49" Name="Diagram1">
+      <Diagram DiagramId="a6d89901efab4c4ca66ce12cd2590744" Name="Diagram1">
         <EntityTypeShape EntityType="ToiletPaperShop_dbModel.Material" Width="1.5" PointX="3" PointY="3" IsExpanded="true" />
         <EntityTypeShape EntityType="ToiletPaperShop_dbModel.MaterialProd" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ToiletPaperShop_dbModel.MaterialsAndProducts" Width="1.5" PointX="5.25" PointY="3.5" IsExpanded="true" />
